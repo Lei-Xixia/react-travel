@@ -6,6 +6,7 @@ import {
   SideMenu,
   Carousel,
   ProductCollection,
+  BusinessPartners,
 } from "./components";
 import { Row, Col, Typography } from "antd";
 import { productList1, productList2, productList3 } from "./mockups";
@@ -13,8 +14,6 @@ import { productList1, productList2, productList3 } from "./mockups";
 import sideImg1 from "./assets/images/img1.png";
 import sideImg2 from "./assets/images/img2.png";
 import sideImg3 from "./assets/images/img3.png";
-
-
 
 function App() {
   return (
@@ -57,6 +56,7 @@ function App() {
           sideImage={sideImg3}
           products={productList3}
         />
+        <BusinessPartners />
       </div>
       <Footer></Footer>
     </div>
