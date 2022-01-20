@@ -7,6 +7,8 @@ import businessImg2 from "../../assets/images/business2.png";
 import businessImg3 from "../../assets/images/business3.png";
 import businessImg4 from "../../assets/images/business4.png";
 
+import { useTranslation } from "react-i18next";
+
 const companies = [
   { src: businessImg1, title: "Microsoft" },
   { src: businessImg2, title: "Youtube" },
@@ -15,10 +17,13 @@ const companies = [
 ];
 
 export const BusinessPartners: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className={styles.content}>
       <Divider orientation="left">
-        <Typography.Title level={3}>合作企业</Typography.Title>
+        <Typography.Title level={3}>
+          {t("home_page.joint_venture")}
+        </Typography.Title>
       </Divider>
       <Row>
         {companies.map((c, i) => (

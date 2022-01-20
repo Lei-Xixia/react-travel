@@ -15,8 +15,12 @@ import sideImg1 from "../../assets/images/img1.png";
 import sideImg2 from "../../assets/images/img2.png";
 import sideImg3 from "../../assets/images/img3.png";
 
-export class HomePage extends React.Component {
+import { withTranslation, WithTranslation } from "react-i18next";
+
+class HomePageComponent extends React.Component<WithTranslation> {
   render() {
+    // console.log(this.props.t);
+    const { t } = this.props;
     return (
       <>
         <Header></Header>
@@ -33,7 +37,7 @@ export class HomePage extends React.Component {
           <ProductCollection
             title={
               <Typography.Title level={3} type="warning">
-                爆款推荐
+                {t("home_page.hot_recommended")}
               </Typography.Title>
             }
             sideImage={sideImg1}
@@ -42,7 +46,7 @@ export class HomePage extends React.Component {
           <ProductCollection
             title={
               <Typography.Title level={3} type="danger">
-                新品上市
+                {t("home_page.new_arrival")}
               </Typography.Title>
             }
             sideImage={sideImg2}
@@ -51,7 +55,7 @@ export class HomePage extends React.Component {
           <ProductCollection
             title={
               <Typography.Title level={3} type="success">
-                国内旅游推荐
+                {t("home_page.domestic_travel")}
               </Typography.Title>
             }
             sideImage={sideImg3}
@@ -64,3 +68,4 @@ export class HomePage extends React.Component {
     );
   }
 }
+export const HomePage = withTranslation()(HomePageComponent);
