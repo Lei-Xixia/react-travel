@@ -8,19 +8,58 @@ import {
   ProductCollection,
   BusinessPartners,
 } from "../../components";
-import { Row, Col, Typography } from "antd";
-import { productList1, productList2, productList3 } from "./mockups";
+import { Row, Col, Typography, Spin } from "antd";
+import { withTranslation, WithTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import { RootState } from "../../redux/store";
+import { giveMeDataActionCreator } from "../../redux/recommendProducts/recommendProductsActions";
 
 import sideImg1 from "../../assets/images/img1.png";
 import sideImg2 from "../../assets/images/img2.png";
 import sideImg3 from "../../assets/images/img3.png";
 
-import { withTranslation, WithTranslation } from "react-i18next";
+const mapStateToProps = (state: RootState) => {
+  return {
+    loading: state.recommendProducts.loading,
+    error: state.recommendProducts.error,
+    productList: state.recommendProducts.productList,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    giveMeData: () => {
+      dispatch(giveMeDataActionCreator());
+    },
+  };
+};
 
-class HomePageComponent extends React.Component<WithTranslation> {
+type PropsType = WithTranslation &
+  ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>;
+
+class HomePageComponent extends React.Component<PropsType> {
+  componentDidMount() {
+    this.props.giveMeData();
+  }
   render() {
-    // console.log(this.props.t);
-    const { t } = this.props;
+    const { t, productList, loading, error } = this.props;
+    if (loading) {
+      return (
+        <Spin
+          size="large"
+          style={{
+            marginTop: 200,
+            marginBottom: 200,
+            marginRight: "auto",
+            marginLeft: "auto",
+            width: "100%",
+          }}
+        ></Spin>
+      );
+    }
+    if (error) {
+      return <div>网站出错: {error}</div>;
+    }
     return (
       <>
         <Header></Header>
@@ -41,7 +80,7 @@ class HomePageComponent extends React.Component<WithTranslation> {
               </Typography.Title>
             }
             sideImage={sideImg1}
-            products={productList1}
+            products={productList[0].touristRoutes}
           />
           <ProductCollection
             title={
@@ -50,7 +89,7 @@ class HomePageComponent extends React.Component<WithTranslation> {
               </Typography.Title>
             }
             sideImage={sideImg2}
-            products={productList2}
+            products={productList[1].touristRoutes}
           />
           <ProductCollection
             title={
@@ -59,7 +98,7 @@ class HomePageComponent extends React.Component<WithTranslation> {
               </Typography.Title>
             }
             sideImage={sideImg3}
-            products={productList3}
+            products={productList[2].touristRoutes}
           />
           <BusinessPartners />
         </div>
@@ -68,4 +107,7 @@ class HomePageComponent extends React.Component<WithTranslation> {
     );
   }
 }
-export const HomePage = withTranslation()(HomePageComponent);
+export const HomePage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(HomePageComponent));
