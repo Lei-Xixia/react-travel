@@ -22,7 +22,7 @@ export const Carousel: React.FC = () => {
   return (
     <AntCarousel autoplay className={styles.slider}>
       {images.map((image, i) => (
-        <Image key={i} src={image} height={250} />
+        <Image key={`images${i}`} src={image} height={250} />
       ))}
     </AntCarousel>
   );
