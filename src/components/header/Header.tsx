@@ -38,7 +38,11 @@ export const Header: React.FC = () => {
             overlay={
               <Menu onClick={menuClickHandler}>
                 {languageList.map((l) => {
-                  return <Menu.Item key={`languageList${l.code}`}>{l.name}</Menu.Item>;
+                  return (
+                    <Menu.Item key={`languageList${l.code}`}>
+                      {l.name}
+                    </Menu.Item>
+                  );
                 })}
                 <Menu.Item key={"new"}>
                   {t("header.add_new_language")}
@@ -50,10 +54,10 @@ export const Header: React.FC = () => {
             {language === "zh" ? "中文" : "English"}
           </Dropdown.Button>
           <Button.Group className={styles["button-group"]}>
-            <Button onClick={() => navigate("register")}>
+            <Button onClick={() => navigate("/register")}>
               {t("header.register")}
             </Button>
-            <Button onClick={() => navigate("signIn")}>
+            <Button onClick={() => navigate("/signIn")}>
               {t("header.signin")}
             </Button>
           </Button.Group>
@@ -71,6 +75,7 @@ export const Header: React.FC = () => {
         <Input.Search
           className={styles["search-input"]}
           placeholder={"请输入旅游目的地、主题、或关键字"}
+          onSearch={(keywords) => navigate("/search/" + keywords)}
         ></Input.Search>
       </Layout.Header>
       {/* bottom-header */}
