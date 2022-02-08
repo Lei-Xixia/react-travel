@@ -5,15 +5,17 @@ import App from "./App";
 import "antd/dist/antd.css";
 import "./i18n/configs";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import rootStore from "./redux/store";
 import axios from "axios";
+import { PersistGate } from "redux-persist/integration/react";
 
-axios.defaults.headers['x-icode'] = 'AC174CD27656CF26' 
-
+axios.defaults.headers["x-icode"] = "AC174CD27656CF26";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
+  <Provider store={rootStore.store}>
+    <PersistGate persistor={rootStore.persistor}>
+      <App />
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );
