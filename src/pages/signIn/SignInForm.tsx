@@ -18,7 +18,6 @@ export const SignInForm = () => {
     if (jwt !== null) {
       navigate("/");
     }
-    navigate("/");
   }, [jwt]);
 
   const onFinish = async (values: any) => {
