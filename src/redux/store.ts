@@ -14,7 +14,7 @@ import { shoppingCartSlice } from "./shoppingCart/slice";
 const persistConfig = {
   key: "root",
   storage,
-  whiteList: ["user"],
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({

@@ -42,7 +42,9 @@ export const ShoppingCartPage: React.FC = () => {
                   dispatch(
                     clearShoppingCartItem({
                       jwt,
-                      itemIds: shoppingCartItems.map((s) => s.id),
+                      itemsId: Array.isArray(shoppingCartItems)
+                        ? shoppingCartItems.map((s) => s.id)
+                        : [],
                     })
                   );
                 }}
