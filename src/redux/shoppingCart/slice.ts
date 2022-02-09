@@ -4,6 +4,8 @@ import { addProductList as add } from "./addShoppingCartItem";
 import { clearProductList as clear } from "./clearShoppingCartItem";
 import { productList as get } from "./getShoppingCart";
 
+import { checkOrderItem } from "../order/checkOut";
+
 interface ShoppingCartState {
   loading: boolean;
   error: null | string;
@@ -84,6 +86,19 @@ export const clearShoppingCartItem = createAsyncThunk(
   }
 );
 
+export const checkOut = createAsyncThunk(
+  "shoppingCart/checkOut",
+  async (jwt: string) => {
+    // const { data } = await axios.post("/api/shoppingCart/checkOut", null, {
+    //   headers: {
+    //     Authorization: `bearer ${jwt}`,
+    //   },
+    // });
+    // return data;
+    return checkOrderItem;
+  }
+);
+
 export const shoppingCartSlice = createSlice({
   name: "shoppingCart",
   initialState,
@@ -133,6 +148,18 @@ export const shoppingCartSlice = createSlice({
       state,
       action: PayloadAction<string | null>
     ) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [checkOut.pending.type]: (state) => {
+      state.loading = true;
+    },
+    [checkOut.fulfilled.type]: (state, action) => {
+      state.items = [];
+      state.loading = false;
+      state.error = null;
+    },
+    [checkOut.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

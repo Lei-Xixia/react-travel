@@ -41,9 +41,6 @@ class HomePageComponent extends React.Component<PropsType> {
   }
   render() {
     const { t, productList, loading, error } = this.props;
-    console.log(this.props);
-
-    console.log(productList);
     if (loading) {
       return (
         <Spin

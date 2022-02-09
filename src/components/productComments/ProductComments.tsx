@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "ProductComments.module.css";
 import { Comment, List } from "antd";
 
 interface PropsType {
