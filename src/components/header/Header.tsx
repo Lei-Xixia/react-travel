@@ -15,7 +15,7 @@ import jwt_decode, { JwtPayload as DefaultJwtPayload } from "jwt-decode";
 import { userSlice } from "../../redux/user/slice";
 
 interface JwtPayload extends DefaultJwtPayload {
-  username: string;
+  name: string;
 }
 
 export const Header: React.FC = () => {
@@ -35,7 +35,8 @@ export const Header: React.FC = () => {
   useEffect(() => {
     if (jwt) {
       const token = jwt_decode<JwtPayload>(jwt);
-      setUsername(token.username);
+      
+      setUsername(token.name);
     }
   }, [jwt]);
 
@@ -82,14 +83,14 @@ export const Header: React.FC = () => {
             <Button.Group className={styles["button-group"]}>
               <div
                 style={{
-                  width: "80px",
+                  width: "120px",
                   fontSize: "16px",
                   lineHeight: "32px",
                   fontWeight: "bold",
                 }}
               >
                 <Typography.Text>{t("header.welcome")}</Typography.Text>
-                <Typography.Text strong>{username}</Typography.Text>
+                <Typography.Text strong>  {username}</Typography.Text>
               </div>
               <Button
                 loading={shoppingCartLoading}
