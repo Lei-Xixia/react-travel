@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { products, pagination } from "./products"; //mock需要
 interface ProductSearchState {
   loading: boolean;
   error: null | string;
@@ -56,7 +56,9 @@ export const productSearchSlice = createSlice({
       action: PayloadAction<string | null>
     ) => {
       state.loading = false;
-      state.error = action.payload;
+      // state.error = action.payload; 正常请求
+      state.data = products; //mock 需要
+      state.pagination = pagination; //mock 需要
     },
   },
 });
