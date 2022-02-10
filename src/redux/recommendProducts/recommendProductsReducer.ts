@@ -4,6 +4,7 @@ import {
   FETCH_RECOMMEND_PRODUCTS_SUCCESS,
   FETCH_RECOMMEND_PRODUCTS_FAIL,
 } from "./recommendProductsActions";
+import { products } from "./products";
 
 interface RecommendProductsState {
   productList: any[];
@@ -12,9 +13,9 @@ interface RecommendProductsState {
 }
 
 const defaultState: RecommendProductsState = {
+  productList: products,
   loading: true,
   error: null,
-  productList: [],
 };
 
 export const recommendProductsReducer = (
@@ -31,13 +32,13 @@ export const recommendProductsReducer = (
       return {
         ...state,
         loading: false,
-        productList: action.payload,
+        productList: products,
       };
     case FETCH_RECOMMEND_PRODUCTS_FAIL:
       return {
         ...state,
         loading: false,
-        productList: action.payload,
+        productList: products,
       };
     default:
       return state;
