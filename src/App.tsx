@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./App.module.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import {
   HomePage,
   SignInPage,
@@ -33,7 +33,7 @@ function App() {
   }, [jwt]);
   return (
     <div className={styles.App}>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signIn" element={<SignInPage />} />
@@ -58,7 +58,7 @@ function App() {
           />
           <Route path="*" element={<NoMatch />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
