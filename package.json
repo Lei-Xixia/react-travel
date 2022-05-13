@@ -34,7 +34,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build -r https://github.com/Lei-Xixia/react-travel.git -b react-travel-pages"
   },
   "eslintConfig": {
     "extends": [
@@ -57,6 +59,7 @@
   "devDependencies": {
     "@types/react-redux": "^7.1.22",
     "@types/react-router-dom": "^5.3.3",
+    "gh-pages": "^4.0.0",
     "typescript-plugin-css-modules": "^3.4.0"
   }
 }
